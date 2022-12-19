@@ -2,3 +2,4 @@ node_modules
 public
 .bablerc
 jest.config.mjs
+*.test.js
