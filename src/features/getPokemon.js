@@ -2,11 +2,21 @@ import fetch from "node-fetch";
 
 const AVAILABLE_SPRITES = 905;
 
-const randomNum = () => {
-  return Math.floor(Math.random() * AVAILABLE_SPRITES) + 1;
+const randomNum = () => Math.floor(Math.random() * AVAILABLE_SPRITES) + 1;
+
+const randomNums = (n) => {
+  const nums = [];
+  for (let i = 0; i < n; i++) {
+    let num = randomNum();
+    while (nums.includes(num)) {
+      num = randomNum();
+    }
+    nums.push(num);
+  }
+  return nums;
 };
 
-const getPokemon = async (id = randomNum()) => {
+const fetchPokemon = async (id) => {
   const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
   const data = await response.json();
   return {
@@ -16,4 +26,10 @@ const getPokemon = async (id = randomNum()) => {
   };
 };
 
-export { getPokemon };
+const getPokemon = async (num) => {
+  const ids = randomNums(num);
+  const pokemons = await Promise.all(ids.map((id) => fetchPokemon(id)));
+  return pokemons;
+};
+
+export default getPokemon;
