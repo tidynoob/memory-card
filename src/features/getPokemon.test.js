@@ -1,6 +1,6 @@
 import {getRandomPokemon,getPokemonDetails} from './getPokemon.js'
 
-describe.skip("getPokemon", () => {
+describe("getPokemon", () => {
 
     let pokemonData;
 
@@ -9,13 +9,13 @@ describe.skip("getPokemon", () => {
     });
 
 
-    test("can fetch a random pokemon", async () => {
+    test("can fetch a random pokemon", () => {
 
         expect(pokemonData).toBeTruthy();
     });
 
-    test("random pokemon has name, id, and sprite", async () => {
-        const pokemon = await getPokemonDetails(pokemonData);
+    test("random pokemon has name, id, and sprite", () => {
+        const pokemon = getPokemonDetails(pokemonData);
         expect(pokemon.name).toBeTruthy();
         expect(pokemon.id).toBeTruthy();
         expect(pokemon.sprite).toBeTruthy();
