@@ -11,6 +11,7 @@
   },
   "plugins": ["react", "prettier"],
   "rules": {
-    "no-plusplus": "off"
+    "no-plusplus": "off",
+    "react/jsx-filename-extension": "off"
   }
 }
