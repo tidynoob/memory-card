@@ -1,7 +1,7 @@
-import { score } from "./score";
+import Score from "./score";
 
 describe("testing score", () => {
-  const gameScore = new score();
+  const gameScore = new Score();
 
   test("score counts properly", () => {
     expect(gameScore.increase().getScore()).toBe(1);
