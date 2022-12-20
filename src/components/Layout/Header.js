@@ -4,7 +4,6 @@ import {
   Image,
   Link,
   Heading,
-  IconButton,
   Modal,
   ModalBody,
   ModalContent,
@@ -12,6 +11,7 @@ import {
   ModalHeader,
   ModalOverlay,
   useDisclosure,
+  Button,
 } from "@chakra-ui/react";
 import { InfoOutlineIcon } from "@chakra-ui/icons";
 import GitHubLogo from "../../assets/github-mark.svg";
@@ -31,19 +31,20 @@ function Header() {
         shadow="base"
       >
         <Heading>Pokémon Memory</Heading>
-        <Box display="flex" alignItems="center" gap={4}>
+        <Box display="flex" alignItems="center" gap={2}>
           <Link display="flex" justifyContent="center" alignItems='center' target="_blank" href="https://github.com/tidynoob/memory-card" h='48px' w='48px' _hover={{ bg: "gray.200" }} borderRadius="base"> 
-            <Image m='auto' src={GitHubLogo} h="36px" w="36px" alt="GitHub" />
+            <Image m='auto' src={GitHubLogo} h="30px" w="30px" alt="GitHub" />
           </Link>
-          <IconButton
-            aria-label="Info"
-            icon={<InfoOutlineIcon />}
-            variant="outline"
-            colorScheme="black"
-            size="lg"
+          <Button
+            variant="ghost"
+            w="48px"
+            h="48px"
             onClick={onOpen}
             _hover={{ bg: "gray.200" }}
-          />
+            borderRadius="base"
+            >
+            <InfoOutlineIcon h="30px" w='30px'/>
+            </Button>
         </Box>
       </Box>
       <Modal isOpen={isOpen} onClose={onClose}>
