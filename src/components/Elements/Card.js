@@ -19,16 +19,25 @@ function Card(props) {
       shadow="base"
       cursor="pointer"
       width="150px"
+      overflowX="auto"
+      textAlign="center"
       mx="auto"
-
+      _hover={{
+        shadow: "md",
+        bg: "gray.50",
+      }}
+      _active={{
+        shadow: "md",
+        bg: "gray.100",
+      }}
       {...rest}
-      
     >
-      <Image src={sprite} />
-      <Heading size="sm">{capitalize(pokemonName)}</Heading>
+      <Image mx="auto" src={sprite} />
+      <Heading textAlign="center" size="sm">
+        {capitalize(pokemonName)}
+      </Heading>
     </Box>
   );
 }
-
 
 export default Card;
