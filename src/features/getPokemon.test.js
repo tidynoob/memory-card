@@ -29,4 +29,13 @@ describe("getPokemon", () => {
     
   });
 
+  test("can get multiple random pokemon from a specific generation", async () => {
+    const testPokemon = await getPokemon(5, 3);
+    expect(testPokemon.length).toBe(5);
+    expect(testPokemon[0].name).toBeTruthy();
+    expect(testPokemon[0].id).toBeTruthy();
+    expect(testPokemon[0].sprite).toBeTruthy();
+    // console.log(testPokemon);
+  });
+
 });

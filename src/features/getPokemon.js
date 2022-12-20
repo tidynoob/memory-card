@@ -1,15 +1,28 @@
 import fetch from "node-fetch";
 
 const AVAILABLE_SPRITES = 905;
+const RANGES = {
+  all: [1, AVAILABLE_SPRITES],
+  1: [1, 151],
+  2: [152, 251],
+  3: [252, 386],
+  4: [387, 493],
+  5: [494, 649],
+  6: [650, 721],
+  7: [722, 809],
+  8: [810, 898],
+};
 
-const randomNum = () => Math.floor(Math.random() * AVAILABLE_SPRITES) + 1;
 
-const randomNums = (n) => {
+const randomNum = ([min, max]) => Math.floor(Math.random() * (max - min + 1)) + min;
+
+
+const randomNums = (n, [min, max]) => {
   const nums = [];
   for (let i = 0; i < n; i++) {
-    let num = randomNum();
+    let num = randomNum([min, max]);
     while (nums.includes(num)) {
-      num = randomNum();
+      num = randomNum([min, max]);
     }
     nums.push(num);
   }
@@ -26,8 +39,9 @@ const fetchPokemon = async (id) => {
   };
 };
 
-const getPokemon = async (num) => {
-  const ids = randomNums(num);
+const getPokemon = async (num, gen = null) => {
+  const range = gen ? RANGES[gen] : RANGES.all;
+  const ids = randomNums(num, range);
   const pokemons = await Promise.all(ids.map((id) => fetchPokemon(id)));
   return pokemons;
 };
