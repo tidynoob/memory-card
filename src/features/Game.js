@@ -29,16 +29,19 @@ class Game {
         this.cards = cardsCopy;
     };
 
-    selectCard = (cardIndex) => {
+    selectCard = async (cardIndex) => {
         const selectedCard = this.cards[cardIndex];
         if (selectedCard.selected) {
             this.resetScore();
-            this.createCards();
+            await this.createCards();
         } else {
             selectedCard.selected = true;
             this.increaseScore();
             this.shuffleCards();
         }
+        console.log(this.score, this.maxScore);
+        return this;
+
     };
 
     resetScore = () => {
