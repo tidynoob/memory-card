@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { ChakraProvider } from "@chakra-ui/react";
+import { ChakraProvider, useBoolean } from "@chakra-ui/react";
 import Header from "./components/Layout/Header";
 import MainLayout from "./components/Layout/MainLayout";
 
@@ -13,12 +13,15 @@ function App() {
   const [highScore, setHighScore] = useState(0);
   const [gen, setGen] = useState(null);
   const [level, setLevel] = useState(1);
+  const [loading, setLoading] = useBoolean();
 
   useEffect(() => {
     const getCards = async () => {
+      setLoading.on();
       game.setGen(gen);
       game.resetScore();
       await game.createCards();
+      setLoading.off();
       setScore(game.score);
       setCards(game.cards);
     };
@@ -26,7 +29,9 @@ function App() {
   }, [gen]);
 
   const handleClick = async (cardIndex) => {
+    setLoading.on()
     await game.selectCard(cardIndex);
+    setLoading.off();
     const newCards = game.cards;
     const newScore = game.score;
     const newHighScore = game.maxScore;
@@ -48,6 +53,7 @@ function App() {
         highScore={highScore}
         setGen={setGen}
         level={level}
+        loading={loading}
       />
     </ChakraProvider>
   );
