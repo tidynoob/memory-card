@@ -10,8 +10,8 @@ class Game {
         this.maxScore = 0;
     };
 
-    createCards = async () => {
-        const pokemonList = await getPokemon(NUM_CARDS);
+    createCards = async (gen = null) => {
+        const pokemonList = await getPokemon(NUM_CARDS, gen);
         const cardList = pokemonList.map((pokemon) => new Card(pokemon));
         // console.log(cardList);
         this.cards = cardList;

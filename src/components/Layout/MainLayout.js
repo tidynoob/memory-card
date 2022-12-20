@@ -2,6 +2,7 @@ import React from "react";
 import { Box, Text } from "@chakra-ui/react";
 import { v4 as uuidv4 } from "uuid";
 import Card from "../Elements/Card";
+import GenSelect from "../Elements/GenSelect";
 
 function Cards(props) {
   const { cards, handleClick } = props;
@@ -38,15 +39,15 @@ function Score(props) {
 }
 
 function MainLayout(props) {
-  const { cards, score, highScore, handleClick } = props;
+  const { cards, score, highScore, handleClick, setGen } = props;
   return (
-    <Box display="flex" flexDir="column" p="4" w="80%" alignItems="center" m="auto">
+    <Box display="flex" flexDir="column" p="4" w="80%" alignItems="center" m="auto" gap="4">
+      <GenSelect setGen={setGen} w='250px'/>
       <Score score={score} highScore={highScore} />
       <Box
         display="grid"
         gridTemplateColumns="repeat(auto-fill, minmax(200px, 1fr))"
         gap="4"
-        p="4"
         w="100%"
       >
         <Cards cards={cards} handleClick={handleClick} />
