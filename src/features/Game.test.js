@@ -5,7 +5,7 @@ describe('testing game', () => {
 
   test('game can generate random pokemon', async () => {
     await testGame.createCards();
-    expect(testGame.cards.length).toBe(10);
+    expect(testGame.cards.length).toBe(5);
     expect(testGame.cards[0].name).toBeTruthy();
     expect(testGame.cards[0].id).toBeTruthy();
     expect(testGame.cards[0].sprite).toBeTruthy();
@@ -36,5 +36,7 @@ describe('testing game', () => {
     expect(testGame.score).toBe(0);
     expect(testGame.maxScore).toBeGreaterThan(0);
   });
+
+  
 
 });

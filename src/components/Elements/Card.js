@@ -17,6 +17,8 @@ function Card(props) {
       borderWidth="1px"
       borderRadius="base"
       shadow="base"
+      cursor="pointer"
+      width="150px"
       {...rest}
       
     >

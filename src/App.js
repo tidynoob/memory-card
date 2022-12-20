@@ -12,10 +12,14 @@ function App() {
   const [score, setScore] = useState(0);
   const [highScore, setHighScore] = useState(0);
   const [gen, setGen] = useState(null);
+  const [level, setLevel] = useState(1);
 
   useEffect(() => {
     const getCards = async () => {
-      await game.createCards(gen);
+      game.setGen(gen);
+      game.resetScore();
+      await game.createCards();
+      setScore(game.score);
       setCards(game.cards);
     };
     getCards();
@@ -26,10 +30,12 @@ function App() {
     const newCards = game.cards;
     const newScore = game.score;
     const newHighScore = game.maxScore;
+    const newLevel = game.level;
 
     setCards(newCards);
     setScore(newScore);
     setHighScore(newHighScore);
+    setLevel(newLevel);
   };
 
   return (
@@ -41,6 +47,7 @@ function App() {
         score={score}
         highScore={highScore}
         setGen={setGen}
+        level={level}
       />
     </ChakraProvider>
   );

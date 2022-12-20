@@ -1,17 +1,31 @@
 import getPokemon from "./getPokemon";
 import Card from "./Card";
 
-const NUM_CARDS = 10;
+const NUM_CARDS = 5;
 
 class Game {
     constructor() {
         this.cards = [];
         this.score = 0;
         this.maxScore = 0;
+        this.level = 1;
+        this.numCards = NUM_CARDS;
+        this.gen = null;
     };
 
-    createCards = async (gen = null) => {
-        const pokemonList = await getPokemon(NUM_CARDS, gen);
+    increaseLevel = () => {
+        this.level += 1;
+        this.numCards = this.level * NUM_CARDS;
+        return this;
+    };
+
+    setGen = (gen) => {
+        this.gen = gen;
+        return this;
+    };
+
+    createCards = async () => {
+        const pokemonList = await getPokemon(this.numCards, this.gen);
         const cardList = pokemonList.map((pokemon) => new Card(pokemon));
         // console.log(cardList);
         this.cards = cardList;
@@ -39,6 +53,10 @@ class Game {
             selectedCard.selected = true;
             this.increaseScore();
             this.shuffleCards();
+        }
+        if (this.score === this.numCards) {
+            this.increaseLevel();
+            await this.createCards();
         }
         return this;
 
