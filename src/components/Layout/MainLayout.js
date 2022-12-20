@@ -46,10 +46,10 @@ function MainLayout(props) {
       <Score score={score} highScore={highScore} />
       <Heading>Level {level}</Heading>
       <Box
-        display="flex"
-        flexWrap="wrap"
+        display="grid"
+        gridTemplateColumns="repeat(auto-fit, minmax(150px, 1fr))"
         gap="4"
-        justifyContent="space-evenly"
+        w='100%'
       >
         <Cards cards={cards} handleClick={handleClick} />
       </Box>

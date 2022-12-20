@@ -19,6 +19,8 @@ function Card(props) {
       shadow="base"
       cursor="pointer"
       width="150px"
+      mx="auto"
+
       {...rest}
       
     >
