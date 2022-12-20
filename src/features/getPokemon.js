@@ -13,9 +13,7 @@ const RANGES = {
   8: [810, 898],
 };
 
-
 const randomNum = ([min, max]) => Math.floor(Math.random() * (max - min + 1)) + min;
-
 
 const randomNums = (n, [min, max]) => {
   const nums = [];
