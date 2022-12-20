@@ -41,7 +41,7 @@ function Score(props) {
 function MainLayout(props) {
   const { cards, score, highScore, handleClick, setGen, level } = props;
   return (
-    <Box display="flex" flexDir="column" p="4" w="80%" alignItems="center" m="auto" gap="4">
+    <Box display="flex" flexDir="column" p="4" w='80%' alignItems="center" m="auto" gap="4">
       <GenSelect setGen={setGen} w='250px'/>
       <Score score={score} highScore={highScore} />
       <Heading>Level {level}</Heading>
@@ -49,8 +49,7 @@ function MainLayout(props) {
         display="flex"
         flexWrap="wrap"
         gap="4"
-        w="100%"
-        justifyContent="center"
+        justifyContent="space-evenly"
       >
         <Cards cards={cards} handleClick={handleClick} />
       </Box>
