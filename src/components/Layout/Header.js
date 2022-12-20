@@ -1,6 +1,8 @@
 import React from "react";
 import {
   Box,
+  Image,
+  Link,
   Heading,
   IconButton,
   Modal,
@@ -12,6 +14,7 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import { InfoOutlineIcon } from "@chakra-ui/icons";
+import GitHubLogo from "../../assets/github-mark.svg";
 
 function Header() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -24,18 +27,24 @@ function Header() {
         alignItems="center"
         p={4}
         zIndex={1}
-        bg="gray.200"
+        bg="gray.100"
         shadow="base"
       >
         <Heading>Pokémon Memory</Heading>
-        <IconButton
-          aria-label="Info"
-          icon={<InfoOutlineIcon />}
-          variant="outline"
-          colorScheme="black"
-          size="lg"
-          onClick={onOpen}
-        />
+        <Box display="flex" alignItems="center" gap={4}>
+          <Link display="flex" justifyContent="center" alignItems='center' target="_blank" href="https://github.com/tidynoob/memory-card" h='48px' w='48px' _hover={{ bg: "gray.200" }} borderRadius="base"> 
+            <Image m='auto' src={GitHubLogo} h="36px" w="36px" alt="GitHub" />
+          </Link>
+          <IconButton
+            aria-label="Info"
+            icon={<InfoOutlineIcon />}
+            variant="outline"
+            colorScheme="black"
+            size="lg"
+            onClick={onOpen}
+            _hover={{ bg: "gray.200" }}
+          />
+        </Box>
       </Box>
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
