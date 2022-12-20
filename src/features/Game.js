@@ -11,6 +11,7 @@ class Game {
         this.level = 1;
         this.numCards = NUM_CARDS;
         this.gen = null;
+        this.numInARow = 0;
     };
 
     increaseLevel = () => {
@@ -25,6 +26,7 @@ class Game {
     };
 
     createCards = async () => {
+        this.numInARow = 0;
         const pokemonList = await getPokemon(this.numCards, this.gen);
         const cardList = pokemonList.map((pokemon) => new Card(pokemon));
         // console.log(cardList);
@@ -48,13 +50,15 @@ class Game {
         const selectedCard = this.cards[cardIndex];
         if (selectedCard.selected) {
             this.resetScore();
+            this.numInARow = 0;
             await this.createCards();
         } else {
             selectedCard.selected = true;
+            this.numInARow += 1;
             this.increaseScore();
             this.shuffleCards();
         }
-        if (this.score === this.numCards) {
+        if (this.numInARow === this.numCards) {
             this.increaseLevel();
             await this.createCards();
         }
