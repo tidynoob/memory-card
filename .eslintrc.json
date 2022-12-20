@@ -12,6 +12,16 @@
   "plugins": ["react", "prettier"],
   "rules": {
     "no-plusplus": "off",
-    "react/jsx-filename-extension": "off"
+    "react/jsx-filename-extension": "off",
+    "no-restricted-imports": [
+      "error",
+      {
+        "patterns": ["@/features/*/*"]
+      }
+    ],
+    "react/prop-types": "off",
+    "import/extensions": "off",
+    "import/no-unresolved": "off",
+    "react/jsx-props-no-spreading": "off"
   }
 }
