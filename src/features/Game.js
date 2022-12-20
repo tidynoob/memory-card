@@ -27,6 +27,7 @@ class Game {
             cardsCopy[j] = temp;
         }
         this.cards = cardsCopy;
+        return this;
     };
 
     selectCard = async (cardIndex) => {
@@ -39,7 +40,6 @@ class Game {
             this.increaseScore();
             this.shuffleCards();
         }
-        console.log(this.score, this.maxScore);
         return this;
 
     };
